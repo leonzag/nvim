@@ -1,0 +1,102 @@
+{
+  "New dataclass": {
+    "prefix": "classd",
+    "body": [
+      "from dataclasses import dataclass\n\n",
+      "@dataclass",
+      "class ${1:ClassName}${2:(object)}:",
+      "\t\"\"\"${3:Docstring for $1.}\"\"\"",
+      "\t${4:property}: ${type}",
+      "\t$0"
+    ],
+    "description": "Code snippet for a dataclass definition."
+  },
+  "```python\nif __name__ == \"__main__\"\n```": {
+    "prefix": "ifmain",
+    "body": "if __name__ == \"__main__\":\n\t${1:...}$0",
+    "description": "Create implicitly all the code at the top level using the `__name__` special variable."
+  },
+  "match": {
+    "prefix": "match",
+    "body": [
+      "match ${1:subject}:",
+      "\tcase ${2:\"pattern\"}:",
+      "\t\t${3:pass}$0"
+    ],
+    "description": "`match/case`"
+  },
+  "case": {
+    "prefix": "case",
+    "body": [
+      "case $1:",
+      "\t$0"
+    ],
+    "description": "`case`"
+  },
+  "__enter__": {
+    "prefix": [
+      "def __enter__",
+      "__enter__"
+    ],
+    "body": [
+      "def __enter__(self):",
+      "\t${1:return self}$0"
+    ],
+    "description": "`ContextManager` enter dunder method"
+  },
+  "__aenter__": {
+    "prefix": [
+      "async def __aenter__",
+      "__aenter__"
+    ],
+    "body": [
+      "async def __aenter__(self):",
+      "\t${1:return self}$0"
+    ],
+    "description": "AsyncContextManager enter dunder method"
+  },
+  "__exit__": {
+    "prefix": [
+      "def __exit__",
+      "__exit__"
+    ],
+    "body": [
+      "def __exit__(self, exc_type, value, traceback):",
+      "\t${1:...}$0"
+    ],
+    "description": "ContextManager exit dunder method"
+  },
+  "__aexit__": {
+    "prefix": [
+      "async def __aexit__",
+      "__aexit__"
+    ],
+    "body": [
+      "async def __exit__(self, exc_type, value, traceback):",
+      "\t${1:...}$0"
+    ],
+    "description": "AsyncContextManager exit dunder method"
+  },
+  "__aiter__": {
+    "prefix": [
+      "async def __aiter__",
+      "__aiter__"
+    ],
+    "body": [
+      "async def __aiter__(self):",
+      "\t${1:...}",
+      "\treturn self$0"
+    ],
+    "description": "Async Iteration Protocol\nAn `__aiter__` method returning an asynchronous iterator"
+  },
+  "__anext__": {
+    "prefix": [
+      "async def __anext__",
+      "__anext__"
+    ],
+    "body": [
+      "async def __anext__(self):",
+      "\t${1:...}$0"
+    ]
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "nvim-snippets",
+  "author": "leonzag",
+  "engines": {
+    "vscode": "^1.0.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "python"
+        ],
+        "path": "./python.json"
+      },
+      {
+        "language": [
+          "go"
+        ],
+        "path": "./go.json"
+      }
+    ]
+  }
+}

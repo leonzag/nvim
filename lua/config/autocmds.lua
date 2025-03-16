@@ -1,0 +1,22 @@
+-- Autocmds are automatically loaded on the VeryLazy event
+-- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
+-- Add any additional autocmds here
+
+-- HardTab and autoformat for golang
+-- vim.api.nvim_create_autocmd({ "FileType" }, {
+--   pattern = { "go" },
+--   callback = function()
+--     vim.opt_local.expandtab = false
+--     vim.b.autoformat = true
+--   end,
+-- })
+
+-- Defaults for lua files
+-- vim.api.nvim_create_autocmd({ "FileType" }, {
+--   pattern = { "lua" },
+--   callback = function()
+--     vim.opt.tabstop = 2
+--     vim.opt.shiftwidth = 2
+--     vim.opt.smarttab = true
+--   end,
+-- })

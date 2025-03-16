@@ -1,0 +1,11 @@
+{
+    "main": {
+        "prefix": "main",
+        "body": [
+            "func main() {",
+            "\t${1}",
+            "}$0"
+        ],
+        "description": "```go\nmain()\n```"
+    }
+}
