@@ -11,6 +11,7 @@ return {
         mode = "n",
         desc = "Restart LSP",
       },
+      { "<A-r>", vim.lsp.buf.rename, mode = "n", desc = "Rename" },
     },
     opts = {
       diagnostics = {
