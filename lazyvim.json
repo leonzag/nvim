@@ -26,7 +26,8 @@
     "plugins.extras.editor.snacks_explorer",
     "plugins.extras.lang.markdown",
     "plugins.extras.lang.python",
-    "plugins.extras.lang.tailwind"
+    "plugins.extras.lang.tailwind",
+    "plugins.extras.ui.snacks_indent"
   ],
   "install_version": 7,
   "news": {
