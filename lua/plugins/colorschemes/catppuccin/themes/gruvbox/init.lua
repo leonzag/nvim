@@ -38,6 +38,15 @@ M.opts = {
     treesitter_context = true,
     vimwiki = true,
     which_key = true,
+    indent_blankline = {
+      enabled = true,
+      scope_color = "peach",
+      colored_indent_levels = false,
+    },
+    snacks = {
+      enabled = true,
+      indent_scope_color = "peach",
+    },
   },
   styles = {
     loops = { "italic" },

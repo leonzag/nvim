@@ -81,12 +81,6 @@ return {
       FidgetTask = { fg = colors.subtext2 },
       FidgetTitle = { fg = colors.peach },
 
-      IblIndent = { fg = colors.surface0 },
-      IblScope = { fg = colors.peach },
-      SnacksIndentScope = { fg = colors.peach },
-      -- IblIndent = { fg = colors.surface0 },
-      -- IblScope = { fg = colors.overlay0 },
-
       Boolean = { fg = colors.mauve },
       Number = { fg = colors.mauve },
       Float = { fg = colors.mauve },
@@ -298,10 +292,6 @@ return {
   end,
   latte = function(colors)
     return {
-      IblIndent = { fg = colors.mantle },
-      IblScope = { fg = colors.surface1 },
-      SnacksIndentScope = { fg = colors.surface1 },
-
       LineNr = { fg = colors.surface1 },
     }
   end,
