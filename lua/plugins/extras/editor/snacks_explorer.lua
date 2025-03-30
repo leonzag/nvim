@@ -23,6 +23,7 @@ return {
               keys = {
                 ["_"] = "edit_split",
                 ["|"] = "edit_vsplit",
+                ---@diagnostic disable-next-line: assign-type-mismatch
                 ["w"] = { { "pick_win", "jump" }, mode = { "n", "i" } },
               },
             },
