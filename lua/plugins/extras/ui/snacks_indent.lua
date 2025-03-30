@@ -8,6 +8,7 @@ return {
         -- char = "│", -- default
       },
       scope = {
+        only_current = true,
         char = "▏",
         -- char = "│", -- default
       },
