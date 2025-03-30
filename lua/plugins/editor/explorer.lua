@@ -1,6 +1,6 @@
 return {
   "nvim-neo-tree/neo-tree.nvim",
-  -- enabled = false,
+  enabled = false,
   keys = {
     { "<A-o>", "<esc><cmd>Neotree toggle float<cr>", mode = { "n", "v" }, desc = "Toggle Explorer" },
     { "<A-e>", "<esc><cmd>Neotree toggle left action=show<cr>", mode = { "n", "v" }, desc = "Toggle Explorer" },
