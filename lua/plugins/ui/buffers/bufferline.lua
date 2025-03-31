@@ -22,12 +22,6 @@ return {
         {
           filetype = "snacks_layout_box",
         },
-        -- {
-        --   filetype = "aerial",
-        --   text = "Code Outline",
-        --   highlight = "AerialLine",
-        --   text_align = "left",
-        -- }
       },
     },
   },
