@@ -15,6 +15,7 @@ return {
       vim.g.mkdp_auto_close = 0 -- set to 1, auto close current preview win on change buf
       vim.g.mkdp_filetypes = { "markdown" }
       vim.g.mkdp_theme = "dark" -- default theme (dark or light)
+      vim.g.mkdp_port = "8531"
     end,
   },
 }
