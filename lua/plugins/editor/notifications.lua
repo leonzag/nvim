@@ -10,9 +10,12 @@ return {
   {
     "folke/noice.nvim",
     opts = {
+      notify = {
+        enabled = false,
+      },
       presets = {
         bottom_search = false,
-        lsp_doc_border = false,
+        lsp_doc_border = true,
       },
       routes = {
         {
@@ -49,7 +52,7 @@ return {
         },
         hover = {
           border = {
-            -- style = "single", -- also set lsp_doc_border = true,
+            style = "single", -- also set lsp_doc_border = true,
           },
         },
         popup = {
