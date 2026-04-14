@@ -1,7 +1,0 @@
--- return {
---   "stevearc/aerial.nvim",
---   keys = {
---     { "<leader>cs", "<cmd>AerialToggle! right<cr>", desc = "Aerial (Symbols)" },
---     { "<A-s>", "<cmd>AerialToggle! right<cr>", desc = "Aerial (Symbols)" },
---   },
--- }
