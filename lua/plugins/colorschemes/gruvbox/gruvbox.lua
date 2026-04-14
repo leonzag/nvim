@@ -13,16 +13,12 @@ local colors = {
 return {
   {
     "ellisonleao/gruvbox.nvim",
-    lazy = false,
+    lazy = true,
+    priority = 1000,
     init = function()
       vim.cmd.colorscheme("gruvbox")
       vim.o.background = "dark"
     end,
-    -- init = function()
-    --   vim.cmd([[colorscheme gruvbox]])
-    --   vim.o.background = "dark"
-    -- end,
-    priority = 1000,
     opts = {
       inverse = false,
       -- dim_inactive = true,

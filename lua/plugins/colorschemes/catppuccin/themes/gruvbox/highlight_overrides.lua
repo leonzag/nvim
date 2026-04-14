@@ -1,16 +1,59 @@
 return {
   all = function(colors)
     return {
-      Visual = {
-        -- bg = colors.sapphire,
-        bg = colors.surface2,
-        cterm = { bold = true },
-        style = { "bold" },
-      },
-      SnippetTabstop = { link = "LspReferenceText" },
+      ---@section builtin syntax
+      Number = { fg = colors.mauve },
+      Boolean = { fg = colors.mauve },
+      Float = { fg = colors.mauve },
+
+      Function = { fg = colors.green, style = { "bold" } },
+
+      Statement = { fg = colors.red },
+      Conditional = { fg = colors.red },
+      Repeat = { fg = colors.red },
+      Label = { fg = colors.peach },
+      Operator = { fg = colors.peach },
+      Keyword = { fg = colors.red, italic = true, cterm = { italic = true } },
+      Exception = { fg = colors.red },
+
+      PreProc = { fg = colors.mauve },
+      Include = { fg = colors.red, italic = true, cterm = { italic = true } },
+      Define = { fg = colors.mauve },
+      Macro = { fg = colors.teal },
+      PreCondit = { fg = colors.mauve },
+
+      Type = { fg = colors.yellow, style = { "bold" } },
+      StorageClass = { fg = colors.peach },
+      Structure = { fg = colors.peach },
+      Typedef = { fg = colors.red },
+
+      Special = { fg = colors.yellow },
+      SpecialChar = { fg = colors.yellow },
+      Tag = { fg = colors.peach },
+      Delimiter = { fg = colors.subtext2 },
+
+      Ignore = { fg = colors.subtext2 },
+      Error = { fg = colors.red },
+
+      ---@section builtin groups
+      WinSeparator = { fg = colors.mantle },
       Folded = { fg = colors.blue, bg = "none" },
-      CurrentWord = { underline = true, cterm = { underline = true } },
-      MatchParen = { link = "CurrentWord" },
+      LineNr = { fg = colors.overlay0 },
+      CursorLineNr = { fg = colors.text },
+      MatchParen = { underline = true, cterm = { underline = true } },
+
+      FloatBorder = { bg = colors.mantle, fg = colors.surface0 },
+      Pmenu = { bg = colors.base, fg = colors.surface0 },
+      PmenuSel = { bg = colors.surface0, fg = "" },
+      SnippetTabstop = { link = "LspReferenceText" },
+      Title = { fg = colors.peach },
+      Visual = { bg = colors.surface2, bold = true, cterm = { bold = true } },
+
+      ---@section user defined
+      Border = { bg = colors.base, fg = colors.surface0 },
+
+      ---@section plugins
+      CurrentWord = { link = "MatchParen" },
       MatchBackground = { link = "Normal" },
       -- CurrentWordTwins = { underline = true, cterm = { underline = true } },
       CurrentWordTwins = { link = "CurrentWord" },
@@ -32,10 +75,7 @@ return {
 
       CmpItemMenu = { fg = colors.surface2 },
       CmpItemAbbr = { fg = colors.subtext0 },
-      CursorLineNr = { fg = colors.text },
-      FloatBorder = { bg = colors.base, fg = colors.surface0 },
       GitSignsChange = { fg = colors.peach },
-      LineNr = { fg = colors.overlay0 },
       LspInfoBorder = { link = "FloatBorder" },
 
       NeoTreeModified = { fg = colors.teal },
@@ -60,9 +100,10 @@ return {
       NeoTreeTabSeparatorActive = { fg = colors.mantle, bg = colors.mantle },
       NeoTreeTabSeparatorInactive = { fg = colors.crust, bg = colors.crust },
       NeoTreeWinSeparator = { fg = colors.base, bg = colors.base },
-      NormalFloat = { bg = colors.base },
-      Pmenu = { bg = colors.mantle, fg = "" },
-      PmenuSel = { bg = colors.surface0, fg = "" },
+      TroubleNormal = { link = "NormalFloat" },
+      BlinkCmpDoc = { link = "Normal" },
+      BlinkCmpDocBorder = { link = "Pmenu" },
+      BlinkCmpDocSeparator = { link = "Pmenu" },
       TelescopePreviewBorder = { bg = colors.crust, fg = colors.crust },
       TelescopePreviewNormal = { bg = colors.crust },
       TelescopePreviewTitle = { fg = colors.crust, bg = colors.crust },
@@ -81,35 +122,45 @@ return {
       FidgetTask = { fg = colors.subtext2 },
       FidgetTitle = { fg = colors.peach },
 
-      Boolean = { fg = colors.mauve },
-      Number = { fg = colors.mauve },
-      Float = { fg = colors.mauve },
+      BufferLineNumbersSelected = {
+        bg = colors.base,
+        fg = colors.peach,
+        bold = true,
+        cterm = {
+          bold = true,
+        },
+      },
+      BufferLineFill = {
+        bg = colors.mantle,
+        fg = colors.overlay2,
+      },
+      BufferLineBuffer = {
+        bg = colors.mantle,
+        fg = colors.overlay2,
+      },
+      BufferLineBackground = {
+        bg = colors.mantle,
+        fg = colors.overlay2,
+      },
+      BufferLineBufferVisible = {
+        bg = colors.mantle,
+        fg = colors.subtext0,
+        bold = true,
+        cterm = {
+          bold = true,
+        },
+      },
+      BufferLineBufferSelected = {
+        bg = colors.base,
+        fg = colors.text,
+        bold = true,
+        cterm = {
+          bold = true,
+        },
+      },
 
-      PreProc = { fg = colors.mauve },
-      PreCondit = { fg = colors.mauve },
-      Include = { fg = colors.red, italic = true, cterm = { italic = true } },
-      Define = { fg = colors.mauve },
-      Conditional = { fg = colors.red },
-      Repeat = { fg = colors.red },
-      Keyword = { fg = colors.red, italic = true, cterm = { italic = true } },
-      Typedef = { fg = colors.red },
-      Exception = { fg = colors.red },
-      Statement = { fg = colors.red },
-
-      Error = { fg = colors.red },
-      StorageClass = { fg = colors.peach },
-      Tag = { fg = colors.peach },
-      Label = { fg = colors.peach },
-      Structure = { fg = colors.peach },
-      Operator = { fg = colors.peach },
-      Title = { fg = colors.peach },
-      Special = { fg = colors.yellow },
-      SpecialChar = { fg = colors.yellow },
-      Type = { fg = colors.yellow, style = { "bold" } },
-      Function = { fg = colors.green, style = { "bold" } },
-      Delimiter = { fg = colors.subtext2 },
-      Ignore = { fg = colors.subtext2 },
-      Macro = { fg = colors.teal },
+      SnacksPicker = { link = "Normal" },
+      SnacksPickerBorder = { link = "Border" },
 
       TreesitterContext = { bg = colors.mantle },
       TreesitterContextBottom = { underline = true, cterm = { underline = true }, sp = colors.surface2 },

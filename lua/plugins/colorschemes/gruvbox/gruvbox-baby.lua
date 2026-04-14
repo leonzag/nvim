@@ -1,7 +1,8 @@
 return {
   {
     "luisiacc/gruvbox-baby",
-    lazy = false,
+    lazy = true,
+    priority = 1000,
     -- dependencies = {
     --   {
     --     "rasulomaroff/reactive.nvim",

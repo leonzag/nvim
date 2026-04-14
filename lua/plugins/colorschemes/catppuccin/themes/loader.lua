@@ -1,16 +1,10 @@
-M = {}
+local M = {}
 
-local color_overrides = require("plugins.colorschemes.catppuccin.themes.gruvbox.color_overrides")
-local highlight_overrides = require("plugins.colorschemes.catppuccin.themes.gruvbox.highlight_overrides")
-
-M.opts = {
+local base_opts = {
   background = {
     light = "latte",
     dark = "mocha",
   },
-
-  color_overrides = color_overrides,
-  highlight_overrides = highlight_overrides,
 
   transparent_background = false,
   show_end_of_buffer = false,
@@ -57,5 +51,31 @@ M.opts = {
     properties = { "italic" },
   },
 }
+
+M.load_theme = function(name)
+  if not name or name == "" or name == "base" then
+    return base_opts
+  end
+
+  if name == "default" then
+    return M.load_default()
+  end
+
+  local path = "plugins.colorschemes.catppuccin.themes." .. name
+  local ok, theme = pcall(require, path)
+  if not ok then
+    vim.notify("failed to load theme: " .. name)
+    return base_opts
+  end
+
+  local opts = vim.tbl_extend("force", base_opts, theme.opts)
+  -- local opts = theme.opts
+
+  return opts
+end
+
+M.load_default = function()
+  return {}
+end
 
 return M
