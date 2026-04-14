@@ -17,32 +17,58 @@ local function close_on_leave(popup_id)
   })
 end
 
+local open_detour = function()
+  local ok = require("detour").Detour() -- Open a detour popup
+  if ok then
+    close_on_leave(vim.api.nvim_get_current_win())
+  end
+end
+
+local open_definitions = function()
+  local ok = require("detour").Detour() -- Open a detour popup
+  Snacks.picker.lsp_definitions()
+  if ok then
+    close_on_leave(vim.api.nvim_get_current_win())
+  end
+end
+
+local open_declarations = function()
+  local ok = require("detour").Detour() -- Open a detour popup
+  Snacks.picker.lsp_declarations()
+  if ok then
+    close_on_leave(vim.api.nvim_get_current_win())
+  end
+end
+
 return {
   "carbon-steel/detour.nvim",
-  keys = {
-    {
-      "<C-w><Enter>",
-      function()
-        local ok = require("detour").Detour() -- Open a detour popup
-        if ok then
-          close_on_leave(vim.api.nvim_get_current_win())
-        end
-      end,
-      mode = "n",
-      desc = "Open popup window",
-    },
-    keys = {
-      "gd",
-      function()
-        local ok = require("detour").Detour() -- Open a detour popup
-        -- Call this function whether or not a detour popup was successfully created. This means we fallback to using the current window if the popup failed.
-        require("telescope.builtin").lsp_definitions({ initial_mode = "normal" })
-        if ok then
-          close_on_leave(vim.api.nvim_get_current_win())
-        end
-      end,
-      mode = "n",
-      desc = "Goto definitions",
-    },
-  },
+  config = function()
+    require("detour").setup()
+
+    local map = vim.keymap.set
+    local moves = require("detour.movements")
+
+    map("n", "<C-o>Enter>", open_detour, { desc = "Open current in popup window" })
+    map("n", "<C-o>d", open_definitions, { desc = "Goto definitions" })
+    map("n", "<C-o>D", open_declarations, { desc = "Goto declarations" })
+
+    map({ "n", "t" }, "<C-j>", moves.DetourWinCmdJ)
+    map({ "n", "t" }, "<C-w>j", moves.DetourWinCmdJ)
+    map({ "n", "t" }, "<C-w><C-j>", moves.DetourWinCmdJ)
+
+    map({ "n", "t" }, "<C-h>", moves.DetourWinCmdH)
+    map({ "n", "t" }, "<C-w>h", moves.DetourWinCmdH)
+    map({ "n", "t" }, "<C-w><C-h>", moves.DetourWinCmdH)
+
+    map({ "n", "t" }, "<C-k>", moves.DetourWinCmdK)
+    map({ "n", "t" }, "<C-w>k", moves.DetourWinCmdK)
+    map({ "n", "t" }, "<C-w><C-k>", moves.DetourWinCmdK)
+
+    map({ "n", "t" }, "<C-l>", moves.DetourWinCmdL)
+    map({ "n", "t" }, "<C-w>l", moves.DetourWinCmdL)
+    map({ "n", "t" }, "<C-w><C-l>", moves.DetourWinCmdL)
+
+    map({ "n", "t" }, "<C-w>w", moves.DetourWinCmdW)
+    map({ "n", "t" }, "<C-w><C-w>", moves.DetourWinCmdW)
+  end,
 }
