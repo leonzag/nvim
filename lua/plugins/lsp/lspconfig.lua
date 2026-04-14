@@ -38,6 +38,11 @@ return {
         bashls = {
           filetypes = { "sh", "bash", "zsh" },
         },
+        djlsp = {
+  				cmd = { "djlsp" },
+  				filetypes = { "html", "htmldjango" },
+  				root_dir = require("lspconfig.util").root_pattern("manage.py", ".git"),
+        },
       },
     },
   },
