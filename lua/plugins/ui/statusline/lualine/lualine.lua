@@ -59,22 +59,38 @@ local fmt_indicator = {
   end,
 }
 
+---@param path_opts? {relative: "cwd"|"root", modified_hl: string?, directory_hl: string?, filename_hl: string?, modified_sign: string?, readonly_icon: string?, length: number?}
+local function pretty_path(path_opts)
+  local _pretty_path = LazyVim.lualine.pretty_path(path_opts)
+  return function(self)
+    if vim.bo.filetype == "snacks_terminal" then
+      local cmd = vim.fn.fnamemodify(vim.o.shell, ":t")
+      return LazyVim.lualine.format(self, " " .. cmd, "Keyword")
+    end
+    return _pretty_path(self)
+  end
+end
+
 return {
   {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
       local options = opts.options
+      options.theme = "auto"
+
       local lualine_c = opts.sections.lualine_c
       local lualine_b = opts.sections.lualine_b
       local lualine_x = opts.sections.lualine_x
 
       options.component_separators = {
-        left = "|",
-        right = "|",
+        -- left = "│",
+        left = "╱",
+        -- right = "│",
+        right = "╱",
       }
       options.section_separators = {
-        left = "",
-        right = "",
+        left = "│",
+        right = "│",
       }
 
       -- change pretty_path() style
@@ -85,10 +101,11 @@ return {
         filename_hl = "Bold",
         modified_sign = " ⬤ ",
         readonly_icon = " 󰌾 ",
-        length = 3,
+        length = 2,
       }
       table.remove(lualine_c, 4)
-      table.insert(lualine_c, 4, LazyVim.lualine.pretty_path(path_opts))
+      -- table.insert(lualine_c, 4, LazyVim.lualine.pretty_path(path_opts))
+      table.insert(lualine_c, 4, pretty_path(path_opts))
 
       -- move git_diff from 'x' to 'b' section
       table.insert(lualine_b, table.remove(lualine_x, #lualine_x))
