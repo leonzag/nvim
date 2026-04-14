@@ -72,61 +72,59 @@ local function pretty_path(path_opts)
 end
 
 return {
-  {
-    "nvim-lualine/lualine.nvim",
-    opts = function(_, opts)
-      local options = opts.options
-      options.theme = "auto"
+  "nvim-lualine/lualine.nvim",
+  opts = function(_, opts)
+    local options = opts.options
+    options.theme = "auto"
 
-      local lualine_c = opts.sections.lualine_c
-      local lualine_b = opts.sections.lualine_b
-      local lualine_x = opts.sections.lualine_x
+    local lualine_c = opts.sections.lualine_c
+    local lualine_b = opts.sections.lualine_b
+    local lualine_x = opts.sections.lualine_x
 
-      options.component_separators = {
-        -- left = "│",
-        left = "╱",
-        -- right = "│",
-        right = "╱",
-      }
-      options.section_separators = {
-        left = "│",
-        right = "│",
-      }
+    options.component_separators = {
+      -- left = "│",
+      left = "╱",
+      -- right = "│",
+      right = "╱",
+    }
+    options.section_separators = {
+      left = "│",
+      right = "│",
+    }
 
-      -- change pretty_path() style
-      local path_opts = {
-        relative = "cwd",
-        modified_hl = "BufferLineModified",
-        directory_hl = "",
-        filename_hl = "Bold",
-        modified_sign = " ⬤ ",
-        readonly_icon = " 󰌾 ",
-        length = 2,
-      }
-      table.remove(lualine_c, 4)
-      -- table.insert(lualine_c, 4, LazyVim.lualine.pretty_path(path_opts))
-      table.insert(lualine_c, 4, pretty_path(path_opts))
+    -- change pretty_path() style
+    local path_opts = {
+      relative = "cwd",
+      modified_hl = "BufferLineModified",
+      directory_hl = "",
+      filename_hl = "Bold",
+      modified_sign = " ⬤ ",
+      readonly_icon = " 󰌾 ",
+      length = 2,
+    }
+    table.remove(lualine_c, 4)
+    -- table.insert(lualine_c, 4, LazyVim.lualine.pretty_path(path_opts))
+    table.insert(lualine_c, 4, pretty_path(path_opts))
 
-      -- move git_diff from 'x' to 'b' section
-      table.insert(lualine_b, table.remove(lualine_x, #lualine_x))
+    -- move git_diff from 'x' to 'b' section
+    table.insert(lualine_b, table.remove(lualine_x, #lualine_x))
 
-      -- remove key-pressed-status
-      table.remove(lualine_x, 2)
+    -- remove key-pressed-status
+    table.remove(lualine_x, 2)
 
-      -- add encoding indicator
-      table.insert(lualine_x, {
-        "encoding",
-        color = function()
-          return { fg = Snacks.util.color("Comment"), gui = "italic" }
-        end,
-      })
+    -- add encoding indicator
+    table.insert(lualine_x, {
+      "encoding",
+      color = function()
+        return { fg = Snacks.util.color("Comment"), gui = "italic" }
+      end,
+    })
 
-      -- LSP, Linter, Formatter indicators
-      table.insert(lualine_x, #lualine_x, lsp_indicator)
-      table.insert(lualine_x, #lualine_x, lint_indicator)
-      table.insert(lualine_x, #lualine_x, fmt_indicator)
+    -- LSP, Linter, Formatter indicators
+    table.insert(lualine_x, #lualine_x, lsp_indicator)
+    table.insert(lualine_x, #lualine_x, lint_indicator)
+    table.insert(lualine_x, #lualine_x, fmt_indicator)
 
-      return opts
-    end,
-  },
+    return opts
+  end,
 }
