@@ -30,6 +30,8 @@ map({ "i", "x", "n", "s", "t" }, "<A-q>", "<cmd>qa<cr>", { desc = "Quit" })
 -- Clear search with <esc>
 map("n", ",<space>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 
--- Disable default LazyVim terminal binds
-del({"n", "t"}, "<C-/>")
-del({"n", "t"}, "<C-_>")
+-- Disable LazyVim terminal binds
+del("n", "<leader>fT")
+del("n", "<leader>ft")
+del({ "n", "t" }, "<C-/>")
+del({ "n", "t" }, "<C-_>")

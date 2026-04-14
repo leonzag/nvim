@@ -89,69 +89,73 @@ local function toggle_specific(id)
   end
 end
 
+local binds = {
+  {
+    "<A-;>",
+    function()
+      Snacks.terminal("zsh", { cwd = LazyVim.root(), win = { position = "float" } })
+    end,
+    mode = { "i", "n", "v", "t" },
+    desc = "Term Float",
+  },
+  {
+    "<A-1>",
+    function()
+      toggle_specific(1)
+    end,
+    mode = { "i", "n", "v", "t" },
+    desc = "Term-1 Toggle",
+  },
+  {
+    "<A-2>",
+    function()
+      toggle_specific(2)
+    end,
+    mode = { "i", "n", "v", "t" },
+    desc = "Term-2 Toggle",
+  },
+  {
+    "<A-\\>",
+    function()
+      toggle_all("right")
+    end,
+    mode = { "i", "n", "v", "t" },
+    desc = "Toggle ALL Right",
+  },
+  {
+    "<A-t>",
+    function()
+      toggle_all("bottom")
+    end,
+    mode = { "i", "n", "v", "t" },
+    desc = "Toggle ALL Bottom",
+  },
+  {
+    "<A-c>",
+    function()
+      local cur_buf = vim.api.nvim_get_current_buf()
+      -- Ищем, принадлежит ли текущий фокус какому-либо из терминалов Snacks
+      for _, term in ipairs(Snacks.terminal.list()) do
+        if term.buf == cur_buf then
+          term:hide() -- Аккуратно прячем его (процесс продолжает работать)
+          return
+        end
+      end
+    end,
+    mode = { "i", "n", "v", "t" },
+    desc = "Hide Focused Terminal",
+  },
+}
+
 return {
   {
     "folke/snacks.nvim",
     ---@type snacks.Config
-    keys = {
-      {
-        "<A-;>",
-        function()
-          Snacks.terminal("zsh", { cwd = LazyVim.root(), win = { position = "float" } })
-        end,
-        mode = { "i", "n", "v", "t" },
-        desc = "Term Float",
-      },
-      {
-        "<A-1>",
-        function()
-          toggle_specific(1)
-        end,
-        mode = { "i", "n", "v", "t" },
-        desc = "Term-1 Toggle",
-      },
-      {
-        "<A-2>",
-        function()
-          toggle_specific(2)
-        end,
-        mode = { "i", "n", "v", "t" },
-        desc = "Term-2 Toggle",
-      },
-      {
-        "<A-\\>",
-        function()
-          toggle_all("right")
-        end,
-        mode = { "i", "n", "v", "t" },
-        desc = "Toggle ALL Right",
-      },
-      {
-        "<A-t>",
-        function()
-          toggle_all("bottom")
-        end,
-        mode = { "i", "n", "v", "t" },
-        desc = "Toggle ALL Bottom",
-      },
-      {
-        "<A-c>",
-        function()
-          local cur_buf = vim.api.nvim_get_current_buf()
-          -- Ищем, принадлежит ли текущий фокус какому-либо из терминалов Snacks
-          for _, term in ipairs(Snacks.terminal.list()) do
-            if term.buf == cur_buf then
-              term:hide() -- Аккуратно прячем его (процесс продолжает работать)
-              return
-            end
-          end
-        end,
-        mode = { "i", "n", "v", "t" },
-        desc = "Hide Focused Terminal",
-      },
-    },
+    keys = keys,
+    -- keys = keys, -- disabled
     opts = {
       terminal = {
+        enabled = false,
         bo = { filetype = "snacks_terminal" },
         wo = {},
         stack = true,
