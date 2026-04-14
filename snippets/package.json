@@ -17,6 +17,12 @@
           "go"
         ],
         "path": "./go.json"
+      },
+      {
+        "language": [
+          "dart"
+        ],
+        "path": "./dart.json"
       }
     ]
   }

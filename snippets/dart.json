@@ -1,0 +1,9 @@
+{
+  "print": {
+    "prefix": "print",
+    "body": [
+      "print(${1:object})$0"
+    ],
+    "description": "```dart\nprint(object)\n```"
+  }
+}
