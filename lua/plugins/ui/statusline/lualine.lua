@@ -83,9 +83,11 @@ return {
 
     options.component_separators = {
       -- left = "│",
-      left = "╱",
+      -- left = "╱",
+      left = " ",
       -- right = "│",
-      right = "╱",
+      -- right = "╱",
+      right = " ",
     }
     options.section_separators = {
       left = "│",
