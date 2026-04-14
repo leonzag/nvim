@@ -16,6 +16,20 @@ return {
   opts = {
     formatters_by_ft = {
       ["zsh"] = { "shfmt" },
+      ["htmldjango"] = { "djlint" },
+      ["c"] = { "clang_format" },
+      ["xml"] = { "xmlformatter" },
+    },
+    formatters = {
+      clang_format = {
+        prepend_args = {
+          "--style=file",
+          "--fallback-style=LLVM",
+        },
+      },
+      shfmt = {
+        prepend_args = { "-i", "4" },
+      },
     },
   },
 }
