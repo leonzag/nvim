@@ -8,23 +8,14 @@ return {
       mappings = {
         i = {
           k = { j = "<Esc>" },
+          ["л"] = { ["о"] = "<Esc>" },
+          ["о"] = { ["л"] = "<Esc>" },
         },
         t = {
           j = {},
         },
       },
       timeout = 300,
-    },
-  },
-  {
-    "TheBlob42/houdini.nvim",
-    enabled = false,
-    opts = {
-      mappings = { "jk", "jj", "kj" },
-      escape_sequences = {
-        -- ["t"] = "<BS><BS><C-\\><C-n>",
-        ["t"] = "<BS><BS><C-\\><Esc>",
-      },
     },
   },
 }

@@ -11,7 +11,7 @@ return {
     end,
   },
   {
-    "echasnovski/mini.move",
+    "nvim-mini/mini.move",
     vscode = true,
     config = function(_, opts)
       require("mini.move").setup(opts)
