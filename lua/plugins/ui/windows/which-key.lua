@@ -4,8 +4,9 @@ return {
   opts = {
     preset = "modern",
     win = {
+      zindex = 1000,
       wo = {
-        winblend = 10,
+        -- winblend = 10,
       },
     },
     spec = {
