@@ -6,7 +6,12 @@ local base_opts = {
     dark = "mocha",
   },
 
-  transparent_background = false,
+  transparent_background = true,
+  float = {
+    transparent = true,
+    solid = false,
+  },
+
   show_end_of_buffer = false,
   integration_default = false,
   default_integrations = true,

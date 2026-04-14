@@ -3,10 +3,14 @@ return {
   lazy = true, -- set 'false' to enable sturtup
   priority = 1000,
   opts = {
+    transparent = true,
+    terminal_colors = true,
     dim_inactive = false,
     styles = {
       comments = { italic = true },
       keywords = { italic = true },
+      sidebars = "transparent",
+      floats = "transparent",
     },
   },
   config = function(_, opts)
