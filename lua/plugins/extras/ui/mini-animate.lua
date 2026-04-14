@@ -1,4 +1,4 @@
 return {
-  "echasnovski/mini.animate",
+  "nvim-mini/mini.animate",
   enabled = not vim.g.neovide,
 }
