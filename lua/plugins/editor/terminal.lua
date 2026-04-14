@@ -89,7 +89,7 @@ local function toggle_specific(id)
   end
 end
 
-local binds = {
+local keys = {
   {
     "<A-;>",
     function()
@@ -151,7 +151,7 @@ return {
   {
     "folke/snacks.nvim",
     ---@type snacks.Config
-    keys = keys,
+    keys = {},
     -- keys = keys, -- disabled
     opts = {
       terminal = {
