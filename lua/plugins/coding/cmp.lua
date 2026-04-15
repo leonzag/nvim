@@ -3,23 +3,29 @@ return {
   opts = {
     completion = {
       menu = { border = "single" },
-      documentation = { window = { border = "single" } },
+      documentation = {
+        window = { border = "double" },
+        auto_show_delay_ms = 100,
+      },
     },
     signature = { window = { border = "single" } },
     keymap = {
-      ["<A-k>"] = { "select_prev", "show", "fallback" },
-      ["<A-j>"] = { "select_next", "show", "fallback" },
-      ["<A-l>"] = { "select_and_accept", "show", "fallback" },
-      ["<A-h>"] = { "cancel", "show", "fallback" },
+      preset = "none",
 
-      ["<C-p>"] = { "select_prev", "show" },
-      ["<C-n>"] = { "select_next", "show" },
+      ["<C-e>"] = { "hide", "fallback" },
+      ["<M-k>"] = { "select_prev", "show", "fallback" },
+      ["<M-j>"] = { "select_next", "show", "fallback" },
+      ["<M-l>"] = { "select_and_accept", "show", "fallback" },
+      ["<M-h>"] = { "cancel", "show", "fallback" },
 
       ["<C-h>"] = { "snippet_backward", "cancel" },
       ["<C-l>"] = { "snippet_forward", "show" },
 
-      ["<C-k>"] = { "show_signature", "hide_signature" },
-      ["<C-j>"] = { "show_signature", "hide_signature" },
+      ["<C-s>"] = { "show_signature", "hide_signature", "fallback" },
+      ["<C-space>"] = { "show", "show_documentation", "hide_documentation" },
+
+      ["<C-k>"] = false,
+      ["<C-j>"] = false,
     },
   },
 }

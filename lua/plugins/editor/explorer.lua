@@ -2,7 +2,7 @@ return {
   "folke/snacks.nvim",
   keys = {
     {
-      "<A-e>",
+      "<M-e>",
       function()
         Snacks.explorer.open()
       end,

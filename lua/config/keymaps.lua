@@ -4,31 +4,31 @@ local del = vim.keymap.del
 map("i", "<C-;>", "<esc>")
 
 -- resize windows
-map({ "n", "t" }, "<A-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
-map({ "n", "t" }, "<A-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
-map({ "n", "t" }, "<A-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
-map({ "n", "t" }, "<A-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
+map({ "n", "t" }, "<M-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+map({ "n", "t" }, "<M-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+map({ "n", "t" }, "<M-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
+map({ "n", "t" }, "<M-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease window width" })
 
 map({ "n", "v" }, "<S-l>", "$hl")
 map({ "n", "v" }, "<S-h>", "^")
 map({ "x", "s" }, "<C-w>", "d", { desc = "Delete lines" })
 
-map("n", "<A-.>", "<cmd>BufferLineCycleNext<cr>")
-map("n", "<A-,>", "<cmd>BufferLineCyclePrev<cr>")
-
-map({ "i", "x", "n", "s" }, "<A-w>", "<cmd>w<cr><esc>", { desc = "Save file" })
+map({ "i", "x", "n", "s" }, "<M-w>", "<cmd>w<cr><esc>", { desc = "Save file" })
 map("n", "gl", vim.diagnostic.open_float, { desc = "Line diagnostic" })
 
-map({ "i", "n", "x", "o" }, "<A-/>", "<esc>gcc", { desc = "Toggle comment", remap = true })
-map("v", "<A-/>", "gc", { desc = "Toggle comment selection", remap = true })
+map({ "i", "n", "x", "o" }, "<M-/>", "<esc>gcc", { desc = "Toggle comment", remap = true })
+map("v", "<M-/>", "gc", { desc = "Toggle comment selection", remap = true })
 
-map({ "i", "x", "n", "s" }, "<A-c>", function()
+map({ "i", "x", "n", "s" }, "<M-c>", function()
   Snacks.bufdelete()
 end, { desc = "Delete Buffer" })
-map({ "i", "x", "n", "s", "t" }, "<A-q>", "<cmd>qa<cr>", { desc = "Quit" })
+map({ "i", "x", "n", "s", "t" }, "<M-q>", "<cmd>qa<cr>", { desc = "Quit" })
 
+-- To normal mode
+map("i", "<C-j>", "<esc>")
+map("i", "<C-k>", "<esc>")
 -- Clear search with <esc>
-map("n", ",<space>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
+map("", ",<space>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 
 -- Disable LazyVim terminal binds
 del("n", "<leader>fT")
