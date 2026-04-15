@@ -80,6 +80,7 @@ return {
     local lualine_c = opts.sections.lualine_c
     local lualine_b = opts.sections.lualine_b
     local lualine_x = opts.sections.lualine_x
+    local lualine_z = opts.sections.lualine_z
 
     options.component_separators = {
       -- left = "│",
@@ -126,6 +127,9 @@ return {
     table.insert(lualine_x, #lualine_x, lsp_indicator)
     table.insert(lualine_x, #lualine_x, lint_indicator)
     table.insert(lualine_x, #lualine_x, fmt_indicator)
+
+    -- remove Time
+    table.remove(lualine_z, 1)
 
     return opts
   end,
