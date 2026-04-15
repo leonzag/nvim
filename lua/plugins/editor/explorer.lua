@@ -1,70 +1,76 @@
 return {
-  "nvim-neo-tree/neo-tree.nvim",
-  enabled = false,
+  "folke/snacks.nvim",
   keys = {
-    { "<A-o>", "<esc><cmd>Neotree toggle float<cr>", mode = { "n", "v" }, desc = "Toggle Explorer" },
-    { "<A-e>", "<esc><cmd>Neotree toggle left action=show<cr>", mode = { "n", "v" }, desc = "Toggle Explorer" },
+    {
+      "<A-e>",
+      function()
+        Snacks.explorer.open()
+      end,
+      mode = { "n", "v" },
+      desc = "Toggle Explorer",
+    },
   },
+  ---@type snacks.Config
   opts = {
-    update_focused_file = {
-      enable = true,
-    },
-    event_handlers = { -- normal mode in rename inputs
-      {
-        event = "neo_tree_popup_input_ready",
-        ---@param args { bufnr: integer, winid: integer }
-        handler = function(args)
-          vim.cmd("stopinsert")
-          vim.keymap.set("i", "<esc>", vim.cmd.stopinsert, { noremap = true, buffer = args.bufnr })
-        end,
-      },
-    },
-    popup_border_style = "single",
-    sources = { "filesystem" },
-    source_selector = {
-      winbar = false,
-      statusline = false,
-    },
-    window = {
-      mappings = {
-        ["<space>"] = "none",
-        ["<A-.>"] = "next_source",
-        ["<A-,>"] = "prev_source",
-        ["Y"] = "none",
-        -- ["Y"] = function(state)
-        --   local node = state.tree:get_node()
-        --   local path = node:get_id()
-        --   vim.fn.setreg("+", path, "c")
-        -- end,
-      },
-    },
-    filesystem = {
-      filtered_items = {
-        always_show = { ".github", ".gitignore", ".config", ".local", ".zsh" },
-      },
-      -- WARN: dangerous opt:
-      use_libuv_file_watcher = true,
-      find_by_full_path_words = true,
-      window = {
-        mappings = {
-          ["t"] = { "add", nowait = true, config = { show_path = "none" } },
-          ["L"] = { "open_nofocus" },
+    picker = {
+      sources = {
+        explorer = {
+          hidden = true,
+          enter = false,
+          win = {
+            list = {
+              keys = {
+                ["_"] = "edit_split",
+                ["|"] = "edit_vsplit",
+                ---@diagnostic disable-next-line: assign-type-mismatch
+                ["w"] = { { "pick_win", "jump" }, mode = { "n", "i" } },
+                ["x"] = { "select", mode = { "i", "n" } },
+              },
+            },
+          },
+          actions = {
+            select = function(picker)
+              picker.list:select()
+            end,
+            explorer_paste = function(picker, item) --[[Override]]
+              local Tree = require("snacks.explorer.tree")
+              local files = vim.split(vim.fn.getreg(vim.v.register or "+") or "", "\n", { plain = true })
+              files = vim.tbl_filter(function(file)
+                -- NOTE: Use `vim.uv.fs_stat` instead of `vim.fn.filereadable`
+                return file ~= "" and vim.uv.fs_stat(file) ~= nil
+              end, files)
+              if #files == 0 then
+                return Snacks.notify.warn(
+                  ("The `%s` register does not contain any files"):format(vim.v.register or "+")
+                )
+              end
+              local dir = picker:dir()
+              -- NOTE: Prefer parent when directory is closed
+              if item.dir and not item.open then
+                dir = vim.fs.dirname(dir)
+              end
+              -- NOTE: Replace `Snacks.picker.util.copy`
+              for _, file in ipairs(files) do
+                -- BUG: Prevent pasting inside itself
+                if file == dir then
+                  Snacks.notify.warn(string.format("Skip recursive copy: %s", file))
+                else
+                  local dst = vim.fs.joinpath(dir, vim.fn.fnamemodify(file, ":t"))
+                  local dst_unique = dst
+                  local count = 0
+                  while vim.uv.fs_stat(dst_unique) do
+                    count = count + 1
+                    dst_unique = string.format("%s-copy-%d", dst, count)
+                  end
+                  Snacks.picker.util.copy_path(file, dst_unique)
+                end
+              end
+              Tree:refresh(dir)
+              Tree:open(dir)
+              picker:update({ target = dir })
+            end,
+          },
         },
-      },
-      commands = {
-        open_nofocus = function(state)
-          require("neo-tree.sources.filesystem.commands").open(state)
-          vim.schedule(function()
-            vim.cmd([[Neotree focus]])
-          end)
-        end,
-      },
-    },
-    sort_case_insensitive = true,
-    default_component_configs = {
-      modified = {
-        symbol = " ● ",
-        highlight = "NeoTreeModified",
       },
     },
   },
