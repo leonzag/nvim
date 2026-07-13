@@ -29,6 +29,8 @@ return {
   keys = {
     { "<M-0>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
     { "<M-9>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
+    { "<C-0>", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer right " },
+    { "<C-9>", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer left" },
     { "<M-]>", "<cmd>BufferLineMoveNext<cr>", desc = "Move buffer right " },
     { "<M-[>", "<cmd>BufferLineMovePrev<cr>", desc = "Move buffer left" },
     { "<S-h>", false },
