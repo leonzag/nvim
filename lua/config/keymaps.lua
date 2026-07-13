@@ -27,6 +27,7 @@ map({ "i", "x", "n", "s", "t" }, "<M-q>", "<cmd>qa<cr>", { desc = "Quit" })
 -- To normal mode
 map("i", "<C-j>", "<esc>")
 map("i", "<C-k>", "<esc>")
+map("i", "<C-х>", "<esc>") -- x - is russian хэ
 -- Clear search with <esc>
 map("", ",<space>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 
