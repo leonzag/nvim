@@ -25,11 +25,9 @@
     "lazyvim.plugins.extras.util.dot",
     "lazyvim.plugins.extras.vscode",
     "plugins.extras.coding.yanki",
-    "plugins.extras.editor.snacks_explorer",
     "plugins.extras.lang.markdown",
     "plugins.extras.lang.python",
-    "plugins.extras.lang.tailwind",
-    "plugins.extras.ui.snacks_indent"
+    "plugins.extras.lang.tailwind"
   ],
   "install_version": 7,
   "news": {
